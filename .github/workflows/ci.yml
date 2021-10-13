@@ -65,10 +65,10 @@ jobs:
           build-args: |
             COMMIT_TAG=${{ github.sha }}
           tags: |
-            sctx/overseerr:develop
-            sctx/overseerr:${{ github.sha }}
-            ghcr.io/sct/overseerr:develop
-            ghcr.io/sct/overseerr:${{ github.sha }}
+            milindpatel63/dianarequest:develop
+            milindpatel63/dianarequest:${{ github.sha }}
+            ghcr.io/milindpatel63/dianarequest:develop
+            ghcr.io/milindpatel63/dianarequest:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
       - # Temporary fix

@@ -3,13 +3,13 @@ import axios from 'axios';
 import { useRouter } from 'next/dist/client/router';
 import React, { useEffect, useState } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
-import useSettings from '../../hooks/useSettings';
+//import useSettings from '../../hooks/useSettings';
 import { useUser } from '../../hooks/useUser';
-import Accordion from '../Common/Accordion';
+//import Accordion from '../Common/Accordion';
 import ImageFader from '../Common/ImageFader';
 import PageTitle from '../Common/PageTitle';
 import LanguagePicker from '../Layout/LanguagePicker';
-import PlexLoginButton from '../PlexLoginButton';
+//import PlexLoginButton from '../PlexLoginButton';
 import Transition from '../Transition';
 import LocalLogin from './LocalLogin';
 
@@ -23,18 +23,18 @@ const messages = defineMessages({
 const Login: React.FC = () => {
   const intl = useIntl();
   const [error, setError] = useState('');
-  const [isProcessing, setProcessing] = useState(false);
+  //const [isProcessing, setProcessing] = useState(false);
   const [authToken, setAuthToken] = useState<string | undefined>(undefined);
   const { user, revalidate } = useUser();
   const router = useRouter();
-  const settings = useSettings();
+  //const settings = useSettings();
 
   // Effect that is triggered when the `authToken` comes back from the Plex OAuth
   // We take the token and attempt to sign in. If we get a success message, we will
   // ask swr to revalidate the user which _should_ come back with a valid user.
   useEffect(() => {
     const login = async () => {
-      setProcessing(true);
+      //setProcessing(true);
       try {
         const response = await axios.post('/api/v1/auth/plex', { authToken });
 
@@ -44,7 +44,7 @@ const Login: React.FC = () => {
       } catch (e) {
         setError(e.response.data.message);
         setAuthToken(undefined);
-        setProcessing(false);
+        //setProcessing(false);
       }
     };
     if (authToken) {
@@ -111,54 +111,9 @@ const Login: React.FC = () => {
                 </div>
               </div>
             </Transition>
-            <Accordion single atLeastOne>
-              {({ openIndexes, handleClick, AccordionContent }) => (
-                <>
-                  <button
-                    className={`font-bold w-full py-2 text-sm text-center text-gray-400 transition-colors duration-200 bg-gray-800 cursor-default focus:outline-none bg-opacity-70 sm:rounded-t-lg ${
-                      openIndexes.includes(0) && 'text-indigo-500'
-                    } ${
-                      settings.currentSettings.localLogin &&
-                      'hover:bg-gray-700 hover:cursor-pointer'
-                    }`}
-                    onClick={() => handleClick(0)}
-                    disabled={!settings.currentSettings.localLogin}
-                  >
-                    {intl.formatMessage(messages.signinwithplex)}
-                  </button>
-                  <AccordionContent isOpen={openIndexes.includes(0)}>
-                    <div className="px-10 py-8">
-                      <PlexLoginButton
-                        isProcessing={isProcessing}
-                        onAuthToken={(authToken) => setAuthToken(authToken)}
-                      />
-                    </div>
-                  </AccordionContent>
-                  {settings.currentSettings.localLogin && (
-                    <div>
-                      <button
-                        className={`font-bold w-full py-2 text-sm text-center text-gray-400 transition-colors duration-200 bg-gray-800 cursor-default focus:outline-none bg-opacity-70 hover:bg-gray-700 hover:cursor-pointer ${
-                          openIndexes.includes(1)
-                            ? 'text-indigo-500'
-                            : 'sm:rounded-b-lg'
-                        }`}
-                        onClick={() => handleClick(1)}
-                      >
-                        {intl.formatMessage(messages.signinwithoverseerr, {
-                          applicationTitle:
-                            settings.currentSettings.applicationTitle,
-                        })}
-                      </button>
-                      <AccordionContent isOpen={openIndexes.includes(1)}>
-                        <div className="px-10 py-8">
-                          <LocalLogin revalidate={revalidate} />
-                        </div>
-                      </AccordionContent>
-                    </div>
-                  )}
-                </>
-              )}
-            </Accordion>
+            <div className="px-10 py-8">
+              <LocalLogin revalidate={revalidate} />
+            </div>
           </>
         </div>
       </div>

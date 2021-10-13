@@ -208,8 +208,8 @@
           "COMMIT_TAG": "$GITHUB_SHA"
         },
         "imageNames": [
-          "sctx/overseerr",
-          "ghcr.io/sct/overseerr"
+          "milindpatel63/dianarequest",
+          "ghcr.io/milindpatel63/dianarequest"
         ],
         "platforms": [
           "linux/amd64",
