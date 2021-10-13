@@ -1,3 +1,10 @@
+# [1.27.0](https://github.com/milindpatel63/dianarequest/compare/v1.26.1...v1.27.0) (2021-10-13)
+
+
+### Features
+
+* unnecessary change to trigger release ([3598f56](https://github.com/milindpatel63/dianarequest/commit/3598f569ac44441215e7e2eafc320bd069160326))
+
 ## [1.26.1](https://github.com/sct/overseerr/compare/v1.26.0...v1.26.1) (2021-09-20)
 
 
