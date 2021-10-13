@@ -16,7 +16,7 @@ import LocalLogin from './LocalLogin';
 const messages = defineMessages({
   signin: 'Sign In',
   signinheader: 'Sign in to continue',
-  signinwithplex: 'Use your Plex account',
+  signinwithplex: 'Sign in with plex',
   signinwithoverseerr: 'Use your {applicationTitle} account',
 });
 
