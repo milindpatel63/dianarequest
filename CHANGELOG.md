@@ -1,3 +1,20 @@
+# [1.32.0](https://github.com/milindpatel63/dianarequest/compare/v1.31.0...v1.32.0) (2022-10-16)
+
+
+### Bug Fixes
+
+* added deep links to issues and status badges ([#3065](https://github.com/milindpatel63/dianarequest/issues/3065)) ([bfe56c3](https://github.com/milindpatel63/dianarequest/commit/bfe56c347073001795b1c3e917eb7a5afcc4462c))
+* remove backdrop-blur class from warning buttons ([#3037](https://github.com/milindpatel63/dianarequest/issues/3037)) ([430b1ab](https://github.com/milindpatel63/dianarequest/commit/430b1ab871f8e3eefbebb37c74aa1ce3f0862efe))
+* sidebar close button placement when using PWA ([#3045](https://github.com/milindpatel63/dianarequest/issues/3045)) ([21d20fd](https://github.com/milindpatel63/dianarequest/commit/21d20fdfd61b7a5a2ec265d420aec103b1430a06))
+* **ui:** hide null dates in episodes list ([#3035](https://github.com/milindpatel63/dianarequest/issues/3035)) ([7404d68](https://github.com/milindpatel63/dianarequest/commit/7404d68143e830df73b9d2779a6d7ea65bc9fd4f))
+* **ui:** minor fixes ([#3036](https://github.com/milindpatel63/dianarequest/issues/3036)) ([f5c2fc1](https://github.com/milindpatel63/dianarequest/commit/f5c2fc1c209b2d04f0e39a97d8b65bcac00667dc))
+* update API docs to allow 'all' seasons value ([#3073](https://github.com/milindpatel63/dianarequest/issues/3073)) ([1dfa943](https://github.com/milindpatel63/dianarequest/commit/1dfa9431a95e7e2a1843746c2473d8a06f03e184))
+
+
+### Features
+
+* Merge remote-tracking branch 'upstream/master' ([2eb28a6](https://github.com/milindpatel63/dianarequest/commit/2eb28a6e44fa56a092b4c3a1a76adf7f8677f84a))
+
 ## [1.30.1](https://github.com/sct/overseerr/compare/v1.30.0...v1.30.1) (2022-10-15)
 
 
