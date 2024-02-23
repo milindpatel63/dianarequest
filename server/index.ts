@@ -1,5 +1,6 @@
 import PlexAPI from '@server/api/plexapi';
 import dataSource, { getRepository } from '@server/datasource';
+import DiscoverSlider from '@server/entity/DiscoverSlider';
 import { Session } from '@server/entity/Session';
 import { User } from '@server/entity/User';
 import { startJobs } from '@server/job/schedule';
@@ -16,7 +17,9 @@ import WebhookAgent from '@server/lib/notifications/agents/webhook';
 import WebPushAgent from '@server/lib/notifications/agents/webpush';
 import { getSettings } from '@server/lib/settings';
 import logger from '@server/logger';
+import clearCookies from '@server/middleware/clearcookies';
 import routes from '@server/routes';
+import imageproxy from '@server/routes/imageproxy';
 import { getAppVersion } from '@server/utils/appVersion';
 import restartFlag from '@server/utils/restartFlag';
 import { getClientIp } from '@supercharge/request-ip';
@@ -93,6 +96,9 @@ app
 
     // Start Jobs
     startJobs();
+
+    // Bootstrap Discovery Sliders
+    await DiscoverSlider.bootstrapSliders();
 
     const server = express();
     if (settings.main.trustProxy) {
@@ -176,6 +182,10 @@ app
       next();
     });
     server.use('/api/v1', routes);
+
+    // Do not set cookies so CDNs can cache them
+    server.use('/imageproxy', clearCookies, imageproxy);
+
     server.get('*', (req, res) => handle(req, res));
     server.use(
       (

@@ -61,6 +61,7 @@ export interface DVRSettings {
   externalUrl?: string;
   syncEnabled: boolean;
   preventSearch: boolean;
+  tagRequests: boolean;
 }
 
 export interface RadarrSettings extends DVRSettings {
@@ -247,7 +248,9 @@ export type JobId =
   | 'radarr-scan'
   | 'sonarr-scan'
   | 'download-sync'
-  | 'download-sync-reset';
+  | 'download-sync-reset'
+  | 'image-cache-cleanup'
+  | 'availability-sync';
 
 interface AllSettings {
   clientId: string;
@@ -408,11 +411,17 @@ class Settings {
         'sonarr-scan': {
           schedule: '0 30 4 * * *',
         },
+        'availability-sync': {
+          schedule: '0 0 5 * * *',
+        },
         'download-sync': {
           schedule: '0 * * * * *',
         },
         'download-sync-reset': {
           schedule: '0 0 1 * * *',
+        },
+        'image-cache-cleanup': {
+          schedule: '0 0 5 * * *',
         },
       },
     };
@@ -542,7 +551,7 @@ class Settings {
   }
 
   private generateApiKey(): string {
-    return Buffer.from(`${Date.now()}${randomUUID()})`).toString('base64');
+    return Buffer.from(`${Date.now()}${randomUUID()}`).toString('base64');
   }
 
   private generateVapidKeys(force = false): void {
